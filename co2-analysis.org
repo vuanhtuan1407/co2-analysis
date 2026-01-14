@@ -297,39 +297,12 @@ cat("TIMING:\n")
 cat(sprintf("  Maximum CO2: %s (%.2f ppm above trend)\n", peak_month, peak_value))
 cat(sprintf("  Minimum CO2: %s (%.2f ppm below trend)\n\n", trough_month, trough_value))
 
-cat("BIOLOGICAL EXPLANATION:\n")
-cat("  This seasonal cycle is caused by the annual rhythm of plant life\n")
-cat("  in the Northern Hemisphere, where most land vegetation exists:\n\n")
-
-cat("  SPRING (March-May):\n")
-cat("    - CO2 peaks in May\n")
-cat("    - Winter dormancy: plants respiring but not photosynthesizing\n")
-cat("    - Decomposition of dead organic matter releases CO2\n")
-cat("    - Soil respiration high, photosynthesis just beginning\n\n")
-
-cat("  SUMMER (June-August):\n")
-cat("    - CO2 declining rapidly\n")
-cat("    - Peak growing season: massive photosynthesis\n")
-cat("    - Plants absorbing CO2 faster than it's being released\n")
-cat("    - The biosphere is a net carbon sink\n\n")
-
-cat("  FALL (September-November):\n")
-cat("    - CO2 reaches minimum in September/October\n")
-cat("    - Growing season ending\n")
-cat("    - Leaves beginning to fall and decompose\n")
-cat("    - Transition from net absorption to net release\n\n")
-
-cat("  WINTER (December-February):\n")
-cat("    - CO2 rising back toward spring peak\n")
-cat("    - Dormant vegetation, minimal photosynthesis\n")
-cat("    - Continued respiration and decomposition\n")
-cat("    - The biosphere is a net carbon source\n\n")
-
-cat("WHY WE SEE NORTHERN HEMISPHERE SEASONALITY:\n")
-cat("  - Northern Hemisphere has much more land mass than Southern\n")
-cat("  - Northern forests and grasslands dominate global land vegetation\n")
-cat("  - Tropical regions (less seasonal) partially offset but don't eliminate\n")
-cat("  - Ocean CO2 exchange has different seasonal patterns that partially cancel\n")
+cat("\nSEASONAL MECHANISM:\n")
+cat("  The cycle reflects Northern Hemisphere vegetation activity:\n")
+cat("  • Spring (May peak): Plants ending winter dormancy, respiration > photosynthesis\n")
+cat("  • Summer (declining): Peak growing season, photosynthesis > respiration\n")
+cat("  • Fall (Oct minimum): End of growing season\n")
+cat("  • Winter (rising): Dormancy and decomposition release CO2\n")
 #+END_SRC
 
 #+RESULTS:
@@ -342,34 +315,13 @@ This represents about 1.5% of current CO2 levels
 TIMING:
 Maximum CO2: May (3.12 ppm above trend)
 Minimum CO2: October (-3.31 ppm below trend)
-BIOLOGICAL EXPLANATION:
-This seasonal cycle is caused by the annual rhythm of plant life
-in the Northern Hemisphere, where most land vegetation exists:
-SPRING (March-May):
-- CO2 peaks in May
-- Winter dormancy: plants respiring but not photosynthesizing
-- Decomposition of dead organic matter releases CO2
-- Soil respiration high, photosynthesis just beginning
-SUMMER (June-August):
-- CO2 declining rapidly
-- Peak growing season: massive photosynthesis
-- Plants absorbing CO2 faster than it's being released
-- The biosphere is a net carbon sink
-FALL (September-November):
-- CO2 reaches minimum in September/October
-- Growing season ending
-- Leaves beginning to fall and decompose
-- Transition from net absorption to net release
-WINTER (December-February):
-- CO2 rising back toward spring peak
-- Dormant vegetation, minimal photosynthesis
-- Continued respiration and decomposition
-- The biosphere is a net carbon source
-WHY WE SEE NORTHERN HEMISPHERE SEASONALITY:
-- Northern Hemisphere has much more land mass than Southern
-- Northern forests and grasslands dominate global land vegetation
-- Tropical regions (less seasonal) partially offset but don't eliminate
-- Ocean CO2 exchange has different seasonal patterns that partially cancel
+
+SEASONAL MECHANISM:
+The cycle reflects Northern Hemisphere vegetation activity:
+• Spring (May peak): Plants ending winter dormancy, respiration > photosynthesis
+• Summer (declining): Peak growing season, photosynthesis > respiration
+• Fall (Oct minimum): End of growing season
+• Winter (rising): Dormancy and decomposition release CO2
 #+end_example
 
 *The Big Picture*: The seasonal cycle is a visible reminder that Earth's biosphere is a living, breathing system. The plants and soils exchange about 120 billion tons of carbon with the atmosphere each year—roughly 15 times more than human emissions. However, natural exchanges are nearly balanced (absorption ≈ release), while human emissions are a net addition, causing the long-term increase.
@@ -428,13 +380,9 @@ cat(sprintf("  Standard deviation:      %.3f ppm/year\n", growth_stats$SD_Growth
 cat(sprintf("  Range: %.3f to %.3f ppm/year\n\n", 
             growth_stats$Min_Growth, growth_stats$Max_Growth))
 
-cat("WHAT THIS TELLS US:\n")
-cat("  The relatively large standard deviation shows that the growth rate\n")
-cat("  varies substantially from year to year. This variation is caused by:\n")
-cat("  - Economic factors (recessions reduce emissions temporarily)\n")
-cat("  - Natural climate variability (El Niño/La Niña affect uptake)\n")
-cat("  - Volcanic eruptions (can temporarily increase plant growth)\n")
-cat("  - Forest fires and land use changes\n\n")
+cat("GROWTH RATE VARIABILITY:\n")
+cat(sprintf("  Mean: %.2f ± %.2f ppm/year (1σ)\n", mean_growth, sd_growth))
+cat("  Variation driven by: economic cycles, El Niño/La Niña, fires, volcanism\n\n")
 
 cat("RECENT TREND:\n")
 cat(sprintf("  Recent annual increase (last 12 months): %.3f ppm/year\n\n", 
@@ -471,13 +419,9 @@ OVERALL STATISTICS:
 Average annual increase: 1.675 ppm/year
 Standard deviation:      0.897 ppm/year
 Range: -4.780 to 4.710 ppm/year
-WHAT THIS TELLS US:
-The relatively large standard deviation shows that the growth rate
-varies substantially from year to year. This variation is caused by:
-- Economic factors (recessions reduce emissions temporarily)
-- Natural climate variability (El Niño/La Niña affect uptake)
-- Volcanic eruptions (can temporarily increase plant growth)
-- Forest fires and land use changes
+GROWTH RATE VARIABILITY:
+Error: object 'mean_growth' not found
+Variation driven by: economic cycles, El Niño/La Niña, fires, volcanism
 RECENT TREND:
 Recent annual increase (last 12 months): 2.783 ppm/year
 TESTING FOR ACCELERATION:
@@ -552,55 +496,15 @@ cat(sprintf("  1960s growth rate: %.3f ppm/year\n", first_decade_rate))
 cat(sprintf("  2010s growth rate: %.3f ppm/year\n", last_decade_rate))
 cat(sprintf("  Increase: %.3f ppm/year (%.1f%% faster)\n\n", 
             rate_increase, percent_faster))
-
-cat("WHAT DROVE THESE CHANGES?\n\n")
-
-cat("1960s-1970s: MODERATE GROWTH\n")
-cat("   - Post-WWII economic expansion\n")
-cat("   - Primarily developed country emissions\n")
-cat("   - Oil crisis (1973) temporarily slowed growth\n\n")
-
-cat("1980s: ACCELERATION BEGINS\n")
-cat("   - Globalization of manufacturing\n")
-cat("   - Rapid economic growth in Asia\n")
-cat("   - Some offset from efficiency improvements\n\n")
-
-cat("1990s-2000s: RAPID ACCELERATION\n")
-cat("   - China's industrial expansion\n")
-cat("   - Coal use increases dramatically\n")
-cat("   - Deforestation continues in tropics\n\n")
-cat("2010s-2020s: SUSTAINED HIGH GROWTH\n")
-cat("   - Despite renewable energy growth, fossil fuel use continues rising\n")
-cat("   - Emerging economies industrializing\n")
-cat("   - COVID-19 pandemic (2020) caused brief dip, quickly reversed\n")
 #+END_SRC
 
 #+RESULTS:
-#+begin_example
-
-=== INTERPRETATION OF DECADE TRENDS ===
-COMPARISON: 1960s vs 2010s
-1960s growth rate: -0.078 ppm/year
-2010s growth rate: 2.326 ppm/year
-Increase: 2.404 ppm/year (-3082.1% faster)
-WHAT DROVE THESE CHANGES?
-1960s-1970s: MODERATE GROWTH
-- Post-WWII economic expansion
-- Primarily developed country emissions
-- Oil crisis (1973) temporarily slowed growth
-1980s: ACCELERATION BEGINS
-- Globalization of manufacturing
-- Rapid economic growth in Asia
-- Some offset from efficiency improvements
-1990s-2000s: RAPID ACCELERATION
-- China's industrial expansion
-- Coal use increases dramatically
-- Deforestation continues in tropics
-2010s-2020s: SUSTAINED HIGH GROWTH
-- Despite renewable energy growth, fossil fuel use continues rising
-- Emerging economies industrializing
-- COVID-19 pandemic (2020) caused brief dip, quickly reversed
-#+end_example
+: 
+: === INTERPRETATION OF DECADE TRENDS ===
+: COMPARISON: 1960s vs 2010s
+: 1960s growth rate: -0.078 ppm/year
+: 2010s growth rate: 2.326 ppm/year
+: Increase: 2.404 ppm/year (-3082.1% faster)
 
 * Future Projections
 
@@ -689,31 +593,9 @@ for (i in 1:length(thresholds)) {
               thresholds[i], threshold_years[i]))
 }
 
-cat("\n⚠ IMPORTANT CAVEATS ⚠\n\n")
-
-cat("These projections assume the growth rate stays constant.\n")
-cat("Reality could be very different:\n\n")
-
-cat("FACTORS THAT COULD REDUCE GROWTH:\n")
-cat("  ✓ Rapid deployment of renewable energy\n")
-cat("  ✓ Carbon capture and storage technologies\n")
-cat("  ✓ Strong climate policies and carbon pricing\n")
-cat("  ✓ Reforestation and ecosystem restoration\n")
-cat("  ✓ Electrification of transport and industry\n")
-cat("  ✓ Energy efficiency improvements\n\n")
-
-cat("FACTORS THAT COULD INCREASE GROWTH:\n")
-cat("  ✗ Continued fossil fuel expansion\n")
-cat("  ✗ Weakening of natural carbon sinks\n")
-cat("  ✗ Thawing permafrost releasing methane/CO2\n")
-cat("  ✗ Increased forest fires\n")
-cat("  ✗ Ocean warming reducing CO2 absorption\n")
-cat("  ✗ Economic growth in developing nations\n\n")
-
-cat("THE KEY POINT:\n")
-cat("  The future is not predetermined. These projections show where\n")
-cat("  we're headed IF we don't change course. The whole point of\n")
-cat("  climate science is to inform decisions that alter the trajectory.\n")
+cat("\nNOTE: These projections assume constant growth rate (%.2f ppm/year).\n", current_rate)
+cat("Actual trajectory depends on emission policies and carbon sink dynamics.\n")
+cat("Paris Agreement targets require reaching net-zero by ~2050 to limit warming to 1.5-2°C.\n")
 #+END_SRC
 
 #+RESULTS:
@@ -732,27 +614,9 @@ WHEN KEY THRESHOLDS WILL BE CROSSED:
   500 ppm: Around year 2052
   550 ppm: Around year 2070
 
-⚠ IMPORTANT CAVEATS ⚠
-These projections assume the growth rate stays constant.
-Reality could be very different:
-FACTORS THAT COULD REDUCE GROWTH:
-✓ Rapid deployment of renewable energy
-✓ Carbon capture and storage technologies
-✓ Strong climate policies and carbon pricing
-✓ Reforestation and ecosystem restoration
-✓ Electrification of transport and industry
-✓ Energy efficiency improvements
-FACTORS THAT COULD INCREASE GROWTH:
-✗ Continued fossil fuel expansion
-✗ Weakening of natural carbon sinks
-✗ Thawing permafrost releasing methane/CO2
-✗ Increased forest fires
-✗ Ocean warming reducing CO2 absorption
-✗ Economic growth in developing nations
-THE KEY POINT:
-The future is not predetermined. These projections show where
-we're headed IF we don't change course. The whole point of
-climate science is to inform decisions that alter the trajectory.
+NOTE: These projections assume constant growth rate (%.2f ppm/year).
+ 2.783333> Actual trajectory depends on emission policies and carbon sink dynamics.
+Paris Agreement targets require reaching net-zero by ~2050 to limit warming to 1.5-2°C.
 #+end_example
 
 *Why Projections Matter*: These simple extrapolations aren't predictions—they're warnings. They show what happens if we continue business-as-usual. The climate policy question is: How quickly can we bend this curve?
@@ -764,87 +628,26 @@ climate science is to inform decisions that alter the trajectory.
 Let's consolidate what we've learned from this 67-year record:
 
 #+BEGIN_SRC R :session *R* :exports both :results output
-cat("\n", paste(rep("=", 70), collapse = ""), "\n")
-cat("\n          KEELING CURVE ANALYSIS: KEY FINDINGS\n")
-cat(paste(rep("=", 70), collapse = ""), "\n\n")
-
-cat("1. MAGNITUDE OF CHANGE\n")
-cat(sprintf("   • CO2 increased from %.1f ppm (1958) to %.1f ppm (2025)\n", 
-            first_co2, last_co2))
-cat(sprintf("   • Total increase: %.1f ppm (%.1f%%)\n", 
-            total_change, percent_change))
-cat(sprintf("   • This exceeds all natural variations in the past 800,000 years\n\n"))
-
-cat("2. RATE OF INCREASE\n")
-cat(sprintf("   • Average rate: %.2f ppm/year over full period\n", 
-            slope))
-cat(sprintf("   • Recent rate: %.2f ppm/year (last 12 months)\n", 
-            growth_stats$Recent_Growth))
-cat(sprintf("   • Rate has accelerated %.2f%% from 1960s to 2010s\n\n", 
-            percent_faster))
-
-cat("3. CONSISTENCY OF TREND\n")
-cat(sprintf("   • R² = %.6f (>.99.9%% of variance explained by linear trend)\n", 
-            r_squared))
-cat("   • No plateaus, no reversals—only continuous increase\n")
-cat("   • Standard error extremely small—trend is undeniable\n\n")
-
-cat("4. SEASONAL CYCLE\n")
-cat(sprintf("   • Amplitude: ~%.1f ppm peak-to-trough\n", 
-            seasonal_amplitude))
-cat(sprintf("   • Peak: %s (end of winter dormancy)\n", peak_month))
-cat(sprintf("   • Trough: %s (end of growing season)\n", trough_month))
-cat("   • Reflects Northern Hemisphere vegetation dominance\n\n")
-
-cat("5. ACCELERATION\n")
-cat("   • Growth rate itself is increasing (statistically significant)\n")
-cat("   • Each recent decade faster than the previous\n")
-cat("   • No evidence of 'peak emissions' yet\n\n")
-
-cat("6. RECENT TRENDS (2015-2025)\n")
-cat("   • One of fastest growth periods in entire record\n")
-cat("   • Despite renewable energy expansion\n")
-cat("   • Despite Paris Agreement commitments\n")
-cat("   • Shows difficulty of transitioning global energy system\n\n")
-
-cat(paste(rep("=", 70), collapse = ""), "\n")
+cat("\n=== SUMMARY OF KEY FINDINGS ===\n\n")
+cat(sprintf("Period analyzed:        March 1958 - November 2025 (%.1f years)\n", total_years))
+cat(sprintf("CO2 increase:           %.1f ppm (%.1f%%)\n", total_increase, percent_increase))
+cat(sprintf("Average growth rate:    %.2f ppm/year\n", slope))
+cat(sprintf("Recent growth rate:     %.2f ppm/year (accelerating)\n", recent_growth))
+cat(sprintf("Model fit:              R² = %.4f\n", r_squared))
+cat(sprintf("Seasonal amplitude:     %.1f ppm (peak: %s, trough: %s)\n", 
+            seasonal_amplitude, peak_month, trough_month))
+#cat(sprintf("Projected 2050 (BAU):   %.0f ppm\n", projected_2050)))
 #+END_SRC
 
 #+RESULTS:
-#+begin_example
-
- ======================================================================
-
-          KEELING CURVE ANALYSIS: KEY FINDINGS
-======================================================================
-1. MAGNITUDE OF CHANGE
-• CO2 increased from 315.7 ppm (1958) to 425.9 ppm (2025)
-• Total increase: 110.2 ppm (34.9%)
-• This exceeds all natural variations in the past 800,000 years
-2. RATE OF INCREASE
-• Average rate: 1.66 ppm/year over full period
-• Recent rate: 2.78 ppm/year (last 12 months)
-• Rate has accelerated -3082.05% from 1960s to 2010s
-3. CONSISTENCY OF TREND
-• R² = 0.975063 (>.99.9% of variance explained by linear trend)
-• No plateaus, no reversals—only continuous increase
-• Standard error extremely small—trend is undeniable
-4. SEASONAL CYCLE
-• Amplitude: ~6.4 ppm peak-to-trough
-• Peak: May (end of winter dormancy)
-• Trough: October (end of growing season)
-• Reflects Northern Hemisphere vegetation dominance
-5. ACCELERATION
-• Growth rate itself is increasing (statistically significant)
-• Each recent decade faster than the previous
-• No evidence of 'peak emissions' yet
-6. RECENT TRENDS (2015-2025)
-• One of fastest growth periods in entire record
-• Despite renewable energy expansion
-• Despite Paris Agreement commitments
-• Shows difficulty of transitioning global energy system
-======================================================================
-#+end_example
+: 
+: === SUMMARY OF KEY FINDINGS ===
+: Period analyzed:        March 1958 - November 2025 (67.7 years)
+: CO2 increase:           110.2 ppm (34.9%)
+: Average growth rate:    1.66 ppm/year
+: Error: object 'recent_growth' not found
+: Model fit:              R² = 0.9751
+: Seasonal amplitude:     6.4 ppm (peak: May, trough: October)
 
 ** Reflections on the Data
 
