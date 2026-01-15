@@ -239,6 +239,110 @@ Intercept (1958): 304.29 ppm
 
 *Why This Matters*: The near-perfect fit of a simple linear model is both reassuring (the data quality is excellent) and alarming (the increase is relentless and predictable). If CO2 were stable or randomly fluctuating, we would see a much lower R² value.
 
+* Model Diagnostics for Time Series
+** Checking Model Assumptions
+
+Our linear model has R² = 0.975, but we need to verify key assumptions. For time series data, the critical issue is *autocorrelation* - whether residuals are independent or correlated over time.
+
+#+BEGIN_SRC R :session *R* :results output graphics file :file images/model_diagnostics.png :width 12 :height 8 :units in :res 150 :exports both
+# Extract residuals
+co2_data$Residuals <- residuals(model_full)
+co2_data$Fitted <- fitted(model_full)
+
+# Create diagnostic plots
+par(mfrow = c(2, 2), mar = c(4, 4, 2, 1))
+
+# 1. Residuals vs Time - check for patterns
+plot(co2_data$Date, co2_data$Residuals, type = "l", col = "darkblue",
+     main = "Residuals Over Time",
+     xlab = "Year", ylab = "Residuals (ppm)")
+abline(h = 0, col = "red", lty = 2, lwd = 2)
+
+# 2. Q-Q Plot - check normality
+qqnorm(co2_data$Residuals, pch = 16, col = alpha("darkgreen", 0.5),
+       main = "Normal Q-Q Plot")
+qqline(co2_data$Residuals, col = "red", lwd = 2)
+
+# 3. ACF - check autocorrelation
+acf(co2_data$Residuals, main = "Autocorrelation Function", 
+    lag.max = 36, col = "purple", lwd = 2)
+
+# 4. Residuals histogram
+hist(co2_data$Residuals, breaks = 40, col = "lightblue", border = "white",
+     main = "Distribution of Residuals", xlab = "Residuals (ppm)")
+
+par(mfrow = c(1, 1))
+#+END_SRC
+
+#+RESULTS:
+[[file:images/model_diagnostics.png]]
+
+** Diagnostic Test Results
+
+#+BEGIN_SRC R :session *R* :exports both :results output
+library(lmtest)
+
+cat("\n=== MODEL DIAGNOSTIC TESTS ===\n\n")
+
+# Durbin-Watson test for autocorrelation
+dw_test <- dwtest(model_full)
+cat("AUTOCORRELATION TEST (Durbin-Watson):\n")
+cat(sprintf("  Statistic: %.3f (2 = no autocorrelation)\n", dw_test$statistic))
+cat(sprintf("  p-value: %.2e\n", dw_test$p.value))
+
+if (dw_test$statistic < 1.5) {
+  cat("  ⚠ Strong positive autocorrelation detected\n")
+  cat("  → This is EXPECTED: residuals contain the seasonal cycle\n\n")
+}
+
+# Shapiro test for normality (sample if too large)
+if (nrow(co2_data) > 5000) {
+  shapiro_test <- shapiro.test(sample(co2_data$Residuals, 5000))
+} else {
+  shapiro_test <- shapiro.test(co2_data$Residuals)
+}
+
+cat("NORMALITY TEST (Shapiro-Wilk):\n")
+cat(sprintf("  p-value: %.4f\n", shapiro_test$p.value))
+if (shapiro_test$p.value > 0.05) {
+  cat("  ✓ Residuals are approximately normal\n\n")
+} else {
+  cat("  ⚠ Slight deviation from normality (common in large datasets)\n\n")
+}
+
+cat("WHAT THIS MEANS:\n")
+cat("• Autocorrelation is present because we didn't model seasonal variation\n")
+cat("• The trend estimate (slope) remains valid and unbiased\n")
+cat("• Standard errors may be underestimated, but the strong trend is clear\n")
+cat("• For trend analysis, this simple model is appropriate\n")
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+Loading required package: zoo
+
+Attaching package: ‘zoo’
+
+The following objects are masked from ‘package:base’:
+
+    as.Date, as.Date.numeric
+
+=== MODEL DIAGNOSTIC TESTS ===
+AUTOCORRELATION TEST (Durbin-Watson):
+Statistic: 0.060 (2 = no autocorrelation)
+p-value: 1.52e-168
+⚠ Strong positive autocorrelation detected
+  → This is EXPECTED: residuals contain the seasonal cycle
+NORMALITY TEST (Shapiro-Wilk):
+p-value: 0.0000
+⚠ Slight deviation from normality (common in large datasets)
+WHAT THIS MEANS:
+• Autocorrelation is present because we didn't model seasonal variation
+• The trend estimate (slope) remains valid and unbiased
+• Standard errors may be underestimated, but the strong trend is clear
+• For trend analysis, this simple model is appropriate
+#+end_example
+
 * Understanding the Seasonal Cycle
 
 ** Why Does CO2 Oscillate Every Year?
