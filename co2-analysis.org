@@ -507,15 +507,6 @@ cat(sprintf("Seasonal amplitude: %.1f ppm\n", seasonal_amplitude))
 : R²: 0.9751
 : Seasonal amplitude: 6.4 ppm
 
-* References
-
-1. *Data Source*: Scripps CO2 Program, Scripps Institution of Oceanography
-   - http://scrippsco2.ucsd.edu
-
-2. *Key Papers*:
-   - Keeling, C. D., et al. (2001). SIO Reference Series, No. 01-06.
-   - Keeling, C. D., et al. (2005). In: A History of Atmospheric CO2, Springer.
-
 * Technical Notes
 
 - *Tool*: R with Tidyverse, ggplot2
