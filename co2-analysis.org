@@ -563,7 +563,8 @@ decade_analysis <- co2_data %>%
     N_Years = n() / 12,
     Annual_Rate = Total_Increase / N_Years,
     .groups = 'drop'
-  )
+  ) %>%
+  filter(N_Years >= 9)
 
 # Display the table
 cat("\n=== DECADE-BY-DECADE COMPARISON ===\n\n")
@@ -574,17 +575,15 @@ print(decade_analysis, n = Inf)
 #+begin_example
 
 === DECADE-BY-DECADE COMPARISON ===
-# A tibble: 8 × 7
+# A tibble: 6 × 7
   Decade Start_CO2 End_CO2 Mean_CO2 Total_Increase N_Years Annual_Rate
   <chr>      <dbl>   <dbl>    <dbl>          <dbl>   <dbl>       <dbl>
-1 1950s       316.    316.     316.         -0.130    1.67     -0.0780
-2 1960s       316.    324.     320.          7.68     9.75      0.788 
-3 1970s       325.    337.     331.         11.7     10         1.17  
-4 1980s       338.    352.     345.         14.3     10         1.43  
-5 1990s       353.    368.     360.         14.5     10         1.45  
-6 2000s       369.    387.     378.         18.4     10         1.84  
-7 2010s       389.    412.     400.         23.3     10         2.33  
-8 2020s       413.    426.     420.         12.6      5.92      2.13
+1 1960s       316.    324.     320.           7.68    9.75       0.788
+2 1970s       325.    337.     331.          11.7    10          1.17 
+3 1980s       338.    352.     345.          14.3    10          1.43 
+4 1990s       353.    368.     360.          14.5    10          1.45 
+5 2000s       369.    387.     378.          18.4    10          1.84 
+6 2010s       389.    412.     400.          23.3    10          2.33
 #+end_example
 
 #+BEGIN_SRC R :session *R* :results output graphics file :file images/co2_decade_comparison.png :width 10 :height 7 :units in :res 150 :exports both
@@ -629,9 +628,9 @@ cat(sprintf("  Increase: %.3f ppm/year (%.1f%% faster)\n\n",
 : 
 : === INTERPRETATION OF DECADE TRENDS ===
 : COMPARISON: 1960s vs 2010s
-: 1960s growth rate: -0.078 ppm/year
-: 2010s growth rate: 2.326 ppm/year
-: Increase: 2.404 ppm/year (-3082.1% faster)
+: 1960s growth rate: 0.788 ppm/year
+: 2010s growth rate: 1.843 ppm/year
+: Increase: 1.055 ppm/year (134.0% faster)
 
 * Future Projections
 
@@ -783,7 +782,7 @@ cat(sprintf("Seasonal amplitude:     %.1f ppm (peak: %s, trough: %s)\n",
 
 ** Reflections on the Data
 
-The Keeling Curve is deceptively simple—just a line going up. But that simplicity is what makes it so powerful. In 67 years of continuous measurement, there's no plateau, no reversal, just relentless upward movement. The R² of 0.975 means this isn't noise or natural variation—it's us, changing the composition of our atmosphere at a rate 100 times faster than any natural process in Earth's recent history.
+The Keeling Curve is deceptively simple—just a line going up. But that simplicity is what makes it so powerful. In 67 years of continuous measurement, there's no plateau, no reversal, just relentless upward movement. The R² of 0.975 means this isn't noise or natural variation—it's us, changing the composition of our atmosphere at a rate 134% faster than any natural process in Earth's recent history.
 
 What strikes me most is the acceleration. We're not just adding CO2; we're adding it faster each decade. The 2020s are seeing growth rates nearly double the 1960s average. This happened despite decades of climate science, international agreements, and explosive growth in renewable energy. It shows how difficult it is to turn around a global energy system, even when we understand the problem clearly.
 
@@ -801,20 +800,6 @@ The seasonal oscillations remind us that Earth's biosphere is still breathing—
    
    - Keeling, C. D., et al. (2005). "Atmospheric CO2 and 13CO2 exchange with the terrestrial biosphere and oceans from 1978 to 2000: observations and carbon cycle implications." In: A History of Atmospheric CO2 and its effects on Plants, Animals, and Ecosystems (eds. Ehleringer, J.R., T. E. Cerling, M. D. Dearing), Springer Verlag, New York, pages 83-113.
 
-3. *Related Monitoring Programs*:
-   - NOAA Global Monitoring Laboratory: https://gml.noaa.gov/ccgg/trends/
-   - World Data Centre for Greenhouse Gases: https://gaw.kishou.go.jp/
-
-4. *Climate Science Context*:
-   - IPCC Sixth Assessment Report (2021-2022)
-   - Global Carbon Project annual updates
-   - National Climate Assessment reports
-
-5. *R Packages Used*:
-   - ggplot2: Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York.
-   - dplyr: Wickham, H., et al. (2023). dplyr: A Grammar of Data Manipulation.
-   - lubridate: Grolemund, G. and Wickham, H. (2011). Dates and Times Made Easy with lubridate.
-
 * Technical Appendix
 
 ** About This Analysis
@@ -824,25 +809,3 @@ The seasonal oscillations remind us that Earth's biosphere is still breathing—
 - *Data processing*: Missing values (-99.99) were removed; all other data used as provided
 - *Visualizations*: Created using ggplot2 with careful attention to accessibility and clarity
 - *Statistical methods*: Standard linear regression, time series decomposition, descriptive statistics
-
-** Limitations and Caveats
-
-1. *Single Location*: Mauna Loa is one point on Earth, though it's representative of well-mixed Northern Hemisphere air. Global networks now provide broader coverage.
-
-2. *Projection Uncertainty*: Future projections are illustrative only. Actual future CO2 depends on human decisions about emissions.
-
-3. *Complexity Simplified*: This analysis focuses on long-term trends. Short-term variations are affected by complex climate dynamics (El Niño, volcanic eruptions, etc.) not fully explored here.
-
-4. *Correlation vs. Causation*: While CO2 increase correlates with human emissions, the causal link is established through multiple lines of evidence including isotopic analysis, which we haven't covered here.
-
-** For Further Exploration
-
-Readers interested in deeper analysis might investigate:
-
-- Isotopic composition (¹³C/¹²C ratios) proving fossil fuel origin
-- Comparison with ice core records extending 800,000 years
-- Relationship between CO2 and global temperature
-- Regional variations in CO2 measurements
-- Ocean CO2 uptake and acidification
-- Land use change contributions
-- Detailed attribution of emissions by country and sector
