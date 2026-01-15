@@ -786,8 +786,6 @@ The Keeling Curve is deceptively simple—just a line going up. But that simplic
 
 What strikes me most is the acceleration. We're not just adding CO2; we're adding it faster each decade. The 2020s are seeing growth rates nearly double the 1960s average. This happened despite decades of climate science, international agreements, and explosive growth in renewable energy. It shows how difficult it is to turn around a global energy system, even when we understand the problem clearly.
 
-The seasonal oscillations remind us that Earth's biosphere is still breathing—plants absorbing CO2 every summer, releasing it every winter. But each breath happens at a higher baseline than the last. If current trends continue, we'll cross 450 ppm in the 2030s. Whether that happens depends on choices being made right now. The curve will keep measuring, keep telling us the truth, whether we want to hear it or not.
-
 * References and Data Sources
 
 1. *Primary Data Source*: 
