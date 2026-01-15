@@ -808,4 +808,4 @@ The seasonal oscillations remind us that Earth's biosphere is still breathing—
 - *Reproducibility*: All code is provided and can be re-run to verify results
 - *Data processing*: Missing values (-99.99) were removed; all other data used as provided
 - *Visualizations*: Created using ggplot2 with careful attention to accessibility and clarity
-- *Statistical methods*: Standard linear regression, time series decomposition, descriptive statistics
+- *Statistical methods*: Standard linear regression, time series decomposition, descriptive statisticsp
