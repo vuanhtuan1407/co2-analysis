@@ -2,8 +2,6 @@
 #+AUTHOR: VU Anh Tuan
 #+DATE: 2026-01-14
 #+OPTIONS: toc:t num:t
-#+LATEX_HEADER: \usepackage{graphicx}
-#+LATEX_HEADER: \usepackage{float}
 
 * Introduction
 
